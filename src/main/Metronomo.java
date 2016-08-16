@@ -7,23 +7,25 @@ package main;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.mtm.BeasMetronome;
+import main.mtm.Compas;
 
 /**
  *
  * @author Agarimo
  */
 public class Metronomo extends Application {
+    
+    public static Label label;
 
     @Override
     public void start(Stage primaryStage) {
-        BeasMetronome metronomo = new BeasMetronome(213);
+        BeasMetronome metronomo = new BeasMetronome(200,Compas.c6by8);
         Button btn1 = new Button();
         btn1.setText("Start");
         btn1.setOnAction((ActionEvent event) -> {
@@ -37,17 +39,23 @@ public class Metronomo extends Application {
             System.out.println("STOPING");
             metronomo.stop();
         });
+        
+        label = new Label();
+        label.setText("WAITING");
 
         VBox root = new VBox();
 
         root.getChildren().add(btn1);
         root.getChildren().add(btn2);
+        root.getChildren().add(label);
 
         Scene scene = new Scene(root, 300, 250);
 
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
         primaryStage.show();
+        
+        
     }
 
     /**
